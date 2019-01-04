@@ -24,7 +24,7 @@ class MyThread(threading.Thread):
 
     def getResult(self):
         try:
-            return self.result  # 如果子线程不使用join方法，此处可能会报没有self.result的错误
+            return self.result  #If the child thread does not use the join() method, there may report the "no self.result" error.
         except Exception:
             return None
 
@@ -34,7 +34,7 @@ def readWave(filename, frame_len):
     length = len(wave_data)
     n = frame_len / 2
     last = length % n
-    if last != 0:  # 序列不是N/2的整数倍则需要补零
+    if last != 0:  # If samples are not an integer multiple of N/2, then zeros should be filled in.
         new_len = length + n - last
         wave_data = np.append(wave_data, np.zeros(int(n - last)))
         frame = int(new_len / n - 1)
