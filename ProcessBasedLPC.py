@@ -58,7 +58,7 @@ if __name__ == '__main__':
     # Without "__spec__ = ……", the multiprocessing program can't start in Spyder IDE
     __spec__ = "ModuleSpec(name='builtins', loader=<class xxxx'_frozen_importlib.BuiltinImporter'>)"
     tic = time.time()
-    frame_len = 1024
+    frame_len = 512
     order = 20
     file_name = r"hvd_001_5.wav"
     wav_in, frame, fs = readWave(file_name, frame_len)
