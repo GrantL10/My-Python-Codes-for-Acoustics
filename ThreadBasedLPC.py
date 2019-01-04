@@ -85,14 +85,10 @@ def getLPC(time, frame, frame_len, order):
 # %% 主程序
 if __name__ == '__main__':
     tic = time.time()
-    frame_len = 1024
-    file_name = r"E:\Database\Lombard German\Joint\all_normal_lombard\all_l00.wav"           # for Windows
-    # file_name = r"/windows/E/Database/Lombard German/Joint/all_normal_lombard/all_l00.wav"   # for Linux
-    # file_name = r"E:\Database\MPEG标准测试序列\单声道\48k采样\es01.wav"                        # for Windows
-    # file_name = r"/windows/E/Database/MPEG标准测试序列/单声道/48k采样/es01.wav"                # for Linux
-    # file_name = r"E:\Database\Lombard German\After DTW\f1\l00\f1_s01_l00.wav"                # for Windows
-    # file_name = r"/windows/E/Database/Lombard German/After DTW/f1/l00/f1_s01_l00.wav"        # for Linux
+    frame_len = 512
+    order = 20
+    file_name = r"hvd_001_5.wav"
     wav_in, frame, fs = readWave(file_name, frame_len)
-    lpc_frame = getLPC(wav_in, frame, frame_len, 8)
+    lpc_frame = getLPC(wav_in, frame, frame_len, order)
     toc = time.time()
     print(toc - tic)
