@@ -12,7 +12,7 @@ def readWave(filename, frame_len):
     length = len(wave_data[0, :])
     n = frame_len / 2
     last = length % n
-    if last != 0:  # 序列不是N/2的整数倍则需要补零
+    if last != 0:  # If samples are not an integer multiple of N/2, then zeros should be filled in.
         new_len = length + n - last
         wave_data = np.append(wave_data, np.zeros([2, int(n - last)]), axis=1)
         frame = int(new_len / n - 1)
@@ -64,11 +64,11 @@ def IFFT(freq_l, freq_r, frame, nfft):
 if __name__ == '__main__':
     tic = time.time()
     frame_len = 1024
-    file_name = r"E:\database\MPEG\stereo\48k\es01.wav"
+    file_name = r"es01.wav"
     wav_in, frame, fs = readWave(file_name, frame_len)
     freq_l, freq_r = FFT(wav_in, frame, frame_len)
     wav_out = IFFT(freq_l, freq_r, frame, frame_len)
-    # writeWave(r"E:\abc.wav", wav_out, fs)
+    # writeWave(r"abc.wav", wav_out, fs)
     # print((wav_in[0,:]-wav_out[0,:]).max())
     toc = time.time()
     print(toc - tic)
