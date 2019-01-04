@@ -74,7 +74,7 @@ def getLPC(time, frame, frame_len, order):
         t = MyThread(calculateLPC, args=(wav_frame[cores * frag:cores * frag + last, :], order))
         threads.append(t)
         t.start()
-    for i in range(cores):  # join()方法等待线程完成
+    for i in range(cores):  # join() method waiting for thread completion
         threads[i].join()
         lpc_frame[i * frag:(i + 1) * frag, :] = threads[i].getResult()
     if last != 0:
