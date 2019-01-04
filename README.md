@@ -1,6 +1,6 @@
 # Speech & Audio tools on Python 3
 
-Included Extension Library: Numpy Librosa Audiolazy
+Included Extension Library: Numpy, Librosa, Audiolazy
 
 Due to the limited efficiency of Audiolazy library, the multiprocessing version isrecommended for files over 20s.
 
