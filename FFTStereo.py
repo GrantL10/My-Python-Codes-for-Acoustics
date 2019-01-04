@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# 该程序只适用于双声道文件
+# Only for two-channel files
 
 import time
 import librosa
