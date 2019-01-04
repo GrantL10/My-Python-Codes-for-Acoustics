@@ -39,8 +39,9 @@ def getLPC(time, frame, frame_len, order):
     with Pool() as p:  # default <missing the number in Pool()>: the same with the number of cores
         task = [(time[i * n: (i + 2) * n] * win, order) for i in range(frame)]
         data = p.map(calculateLPC, task)
-    # map函数数据返回机制可能存在bug，当语音帧全0，返回LPC系数全1时，map返回的list只有一个元素1，重复元素全部被省略掉了。
-    # 使用后处理修复不正常数据
+    # The map function data return mechanism may have an error. When the speech frame is all 0, the LPCs should be all 1. 
+    # But only one element 1 is returned in the list returned by the map, and the repeated elements are all omitted.
+    # Post-processing to repair abnormal data
     lpc_frame = np.ones([frame, order + 1])
     for i in range(frame):
         if len(data[i]) == 1:
@@ -58,13 +59,9 @@ if __name__ == '__main__':
     __spec__ = "ModuleSpec(name='builtins', loader=<class xxxx'_frozen_importlib.BuiltinImporter'>)"
     tic = time.time()
     frame_len = 1024
-    file_name = r"E:\Database\Lombard German\Joint\all_normal_lombard\all_l00.wav"  # for Windows
-    # file_name = r"/windows/E/Database/Lombard German/Joint/all_normal_lombard/all_l00.wav"   # for Linux
-    # file_name = r"E:\Database\MPEG标准测试序列\单声道\48k采样\es01.wav"                        # for Windows
-    # file_name = r"/windows/E/Database/MPEG标准测试序列/单声道/48k采样/es01.wav"                # for Linux
-    # file_name = r"E:\Database\Lombard German\After DTW\f1\l00\f1_s01_l00.wav"                # for Windows
-    # file_name = r"/windows/E/Database/Lombard German/After DTW/f1/l00/f1_s01_l00.wav"        # for Linux
+    order = 20
+    file_name = r"hvd_001_5.wav"
     wav_in, frame, fs = readWave(file_name, frame_len)
-    lpc_frame = getLPC(wav_in, frame, frame_len, 8)
+    lpc_frame = getLPC(wav_in, frame, frame_len, order)
     toc = time.time()
     print("%.2f mins" % ((toc - tic) / 60))
