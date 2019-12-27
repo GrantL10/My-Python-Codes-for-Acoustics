@@ -47,7 +47,7 @@ if __name__ == '__main__':
     tic = time.time()
     frame_len = 512
     order = 40
-    file_name = r"..\Vocoder\hvd_001_1.wav"  # Arbitrary Mono Audio
+    file_name = r"hvd_001_1.wav"  # Arbitrary Mono Audio
     wav_in, frame, fs = readWave(file_name, frame_len)
     lpc_frame, mcep_frame, mfcc_frame, _ = Analysis(wav_in, frame, frame_len, order)
     toc = time.time()
