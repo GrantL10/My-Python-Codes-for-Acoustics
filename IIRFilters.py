@@ -13,7 +13,6 @@ def LowPass(f0, Q=1., fs=192000):
     """
     w0 = 2 * np.pi * f0 / fs
     alpha = np.sin(w0) / (2 * Q)
-
     b0 = (1 - np.cos(w0)) / 2
     b1 = 1 - np.cos(w0)
     b2 = (1 - np.cos(w0)) / 2
@@ -23,7 +22,6 @@ def LowPass(f0, Q=1., fs=192000):
     b = np.array([b0, b1, b2])
     a = np.array([a0, a1, a2])
     h = np.hstack((b / a[0], a / a[0]))
-
     return h
 
 
@@ -37,7 +35,6 @@ def HighPass(f0, Q=1., fs=192000):
     """
     w0 = 2 * np.pi * f0 / fs
     alpha = np.sin(w0) / (2 * Q)
-
     b0 = (1 + np.cos(w0)) / 2
     b1 = -1 - np.cos(w0)
     b2 = (1 + np.cos(w0)) / 2
@@ -46,9 +43,7 @@ def HighPass(f0, Q=1., fs=192000):
     a2 = 1 - alpha
     b = np.array([b0, b1, b2])
     a = np.array([a0, a1, a2])
-
     h = np.hstack((b / a[0], a / a[0]))
-
     return h
 
 
@@ -71,12 +66,9 @@ def LowShelf(f0, gain=0., Q=1., fs=192000):
     a0 = (A + 1) + (A - 1) * np.cos(w0) + 2 * np.sqrt(A) * alpha
     a1 = -2 * ((A - 1) + (A + 1) * np.cos(w0))
     a2 = (A + 1) + (A - 1) * np.cos(w0) - 2 * np.sqrt(A) * alpha
-
     b = np.array([b0, b1, b2])
     a = np.array([a0, a1, a2])
-
     h = np.hstack((b / a[0], a / a[0]))
-
     return h
 
 
@@ -99,12 +91,9 @@ def HighShelf(f0, gain=0., Q=1., fs=192000):
     a0 = (A + 1) - (A - 1) * np.cos(w0) + 2 * np.sqrt(A) * alpha
     a1 = 2 * ((A - 1) - (A + 1) * np.cos(w0))
     a2 = (A + 1) - (A - 1) * np.cos(w0) - 2 * np.sqrt(A) * alpha
-
     b = np.array([b0, b1, b2])
     a = np.array([a0, a1, a2])
-
     h = np.hstack((b / a[0], a / a[0]))
-
     return h
 
 
@@ -120,7 +109,6 @@ def PeakNotch(f0, gain=0., Q=1., fs=192000):
     A = np.sqrt(10 ** (gain / 20))
     w0 = 2 * np.pi * f0 / fs
     alpha = np.sin(w0) / (2 * Q)
-
     b0 = 1 + alpha * A
     b1 = -2 * np.cos(w0)
     b2 = 1 - alpha * A
@@ -129,9 +117,7 @@ def PeakNotch(f0, gain=0., Q=1., fs=192000):
     a2 = 1 - alpha / A
     b = np.array([b0, b1, b2])
     a = np.array([a0, a1, a2])
-
     h = np.hstack((b / a[0], a / a[0]))
-
     return h
 
 if __name__ == '__main__':
@@ -145,7 +131,7 @@ if __name__ == '__main__':
     h_abs = np.abs(h)
     print('Maximum in dB: %.2f' %(20 * np.log10(np.max(h_abs))))
     print('Minimum in dB: %.2f' %(20 * np.log10(np.min(h_abs))))
-
+    
     plt.close('all')
     axs = plt.figure(1, figsize=(6, 5)).subplots(2, 1)
     axs[0].set_xscale('log')
