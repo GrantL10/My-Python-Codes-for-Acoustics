@@ -5,4 +5,4 @@
 3. \<ProcessBasedLPC.py> LPC analysis by multi-processing
 4. \<CmpMCEP2MFCC.py> the comparison of MFCCs and MCEPs
 5. \<IIRFilters.py> Biquad IIR Filters: Peak, Notch, High-Pass, Low-Pass, Band-Pass, All-Pass, High-Shelf, Low-Shelf (Thanks: https://webaudio.github.io/Audio-EQ-Cookbook/audio-eq-cookbook.html)
-6. \<Invfreqz.py> the Python implemention of "invfreqz" in Matlab
+6. \<Invfreqz.py> the Python implemention of "invfreqz" in Matlab, fix the error in https://github.com/awesomebytes/parametric_modeling and use “lstsq” to return the least-squares solution to singular values.
