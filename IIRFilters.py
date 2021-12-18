@@ -79,7 +79,6 @@ def allPass(f0, Q=1., fs=48000):
     Biquad IIR All-Pass Filter
     :param f0: center frequency
     :param Q: quality factor
-    :param gain: gain; the positive value is peak filter and the negative value is notch filter
     :param fs: sampling rate
     :return double 2-order coefficients
     """
@@ -173,7 +172,6 @@ def notch(f0, Q=1., fs=48000):
     Biquad IIR Notch Filter
     :param f0: center frequency
     :param Q: quality factor
-    :param gain: gain; the positive value is peak filter and the negative value is notch filter
     :param fs: sampling rate
     :return double 2-order coefficients
     """
